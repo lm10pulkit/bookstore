@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style type="text/css">
+    	.customdiv
+    	{    margin-left: 200px;
+    		margin-top: 80px; 
+    		height: 550px;
+    		width: 560px;
+            background-color: lightgrey;
+
+    	}
+
+    </style>
+    </head>
+  <body>
+    <nav class="navbar navbar-expand-sm fixed-top" style=" background-color: lightgrey;">
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+        
+      <li class="nav-item">
+     <a href="/addbook"><button class="btn btn-info" type="button" name="logout" style="background-color: black;"> add book</button> </a>
+    </li>
+
+    <li class="nav-item" style="padding-left: 20px;">
+      <a href="/mybook">  <button class="btn btn-info" type="button" style="background-color: black;" name="wall">MyBook</button> </a>
+    </li>
+
+     <li class="nav-item" style="padding-left: 20px;">
+      <a href="/public">  <button class="btn btn-info" type="button" style="background-color: black;" name="wall">Wall</button> </a>
+    </li>
+
+   </ul>
+  <a href="/logout">
+  <button  class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button>
+  </a>
+  </nav>
+  	<div class="customdiv">
+         <h1 style="text-align: center;padding-top: 20px;font-weight: bold;"> <i> ADD DETAILS</i></h1>
+         <form class="form-horizontal" method='post' action="/addbook">
+         <div class="form-group">
+
+         	          <div class="form-group" style="padding-left: 25px; padding-top: 40px;">
+                        <div class="row">
+                        <div class="col-sm-2 ">
+                         	<label for="name" style="font-weight: bold;">name </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                     	     <input type="text" name="name" size="50px;" >
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group" style="padding-left: 25px; padding-top: 0px;">
+                        <div class="row">
+                        <div class="col-sm-2 ">
+                         	<label for="author" style="font-weight: bold;">author </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                     	     <input type="text" name="author" size="50px;">
+                           </div>
+                        </div>
+                     </div>
+                    
+                     <div class="form-group" style="padding-left: 25px; padding-top: 0px;">
+                        <div class="row">
+                        <div class="col-sm-2 ">
+                         	<label for="tags" style="font-weight: bold;">tags </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                     	     <input type="text" name="tags" size="50px;">
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="form-group"> 
+                        <div class="row">   
+                          <div class="col-sm-2 offset-sm-2" style="padding-left: 35px; padding-top: 20px;">
+                          <button class='btn btn-info' type="submit">add book </button>
+                          </div>
+                      </div>
+                      </div>
+                     
+         </div>
+          </form>
+
+  	</div>
+
+   
+ 
+ 	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

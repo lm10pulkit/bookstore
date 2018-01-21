@@ -1,0 +1,141 @@
+ <!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style type="text/css">
+   
+.customdiv
+{
+	margin-top : 
+   
+   background-color:white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 35px;
+  font-weight:bold;
+  font-size: 15px;  
+ border-radius: 4px;
+ 
+}
+.container
+{
+	padding-top: 20px;
+
+}
+input[type=text]:focus {
+    background-color: grey;
+}
+
+.custom1
+{
+	height: 150px;
+	background-color: white;
+	border:1px lighter black;
+
+}
+.custom2
+{
+	height:180px;
+	background-color: white;
+	border: 1px solid black;  
+}
+
+</style>
+
+
+   </head>
+   <body>
+
+   <nav class="navbar navbar-expand-sm fixed-top" style=" background-color: lightgrey;">
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+        
+     	<li class="nav-item">
+     <a href="/addbook"><button class="btn btn-info" type="button" name="logout" style="background-color: black;">addbook</button> </a>
+    </li>
+
+    <li class="nav-item" style="padding-left: 20px;">
+      <a href="/mybook">  <button class="btn btn-info" type="button" style="background-color: black;" name="">mybook</button></a>
+    </li>
+
+ <li class="nav-item" style="padding-left: 20px;">
+      <a href="/public">  <button class="btn btn-info" type="button" style="background-color: black;" name="">wall</button> </a>
+    </li>
+   </ul>
+  <a href="/logout">
+  <button href="" class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button></a>
+  </nav>
+
+  <div class="container">
+  	   	<div class="row" style="padding-top: 110px; ">
+  	   		<div class="col-lg-6 offset-lg-2 ">
+  	   			<div class="customdiv" style="height: 500px; margin-bottom: 0px; background-color: white;  font-weight: bolder; padding-top: 20px;">
+                  
+                       <i style="font-size: 20px;">edit details</i>
+                     <div class="custom2" style=" padding-top: 20px;padding-left: 10px;"> 
+                     <form class="form-horizontal" method='post' action='/editbook?bookid=<%=bookid%>'>
+                      <div class="form-group">
+                        <div class="row">
+                        <div class="col-sm-2 ">
+                         	<label for="name">name </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                     	     <input type="text" name="name" size="40px;" required >
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-2">
+                         <label for="author">Author </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                            <input type="text" name="author" size="40px;" required="">
+                           </div>
+                      </div>
+                      </div>
+                      
+                       <div class="form-group"> 
+                        <div class="row">   
+                          <div class="col-sm-2 offset-sm-1">
+                            <button class="btn btn-info" type="submit" style="background-color:green;"> submit</button>
+                          </div>
+                      </div>
+                      </div>
+                    </form> 
+                </div>
+
+              </br>
+              <i style="font-size: 20px;">Add Tags </i>
+            <div class="custom2" style=" padding: 10px;"> 
+            	  <form class="form-horizontal" method ='post' action="/addtag?bookid=<%=bookid%>">
+            	  	 <div class="form-group">
+                <input type="text" name="tags" placeholder="you can add only one tag at once" size="30px;" required="">
+
+                </br> 
+                </br> 
+                <a href="" style="padding-left: 28px;"> <button class="btn btn-info" type="submit" name="tages"> Add tag </button></a>  
+                </div>            
+               </form>
+
+               </div>    
+            </div>
+  	   			</div>
+  	   		</div>
+  	   	
+  	   	</div>
+  	   	</div>
+
+  
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
