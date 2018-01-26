@@ -82,7 +82,8 @@ var findwishlist = function(userid, callback){
    });
 };
 var  removeitem = function(userid ,bookid, callback){
-    cart.update({userid:userid},{bookids:{$pull : bookid}},callback);
+    bookid= bookid.toString();
+     cart.update({userid:userid},{bookids:{$pull : bookid}},callback);
 };
   module.exports={
    findbyusername,

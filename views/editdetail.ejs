@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <style type="text/css">
    
@@ -67,9 +69,17 @@ input[type=text]:focus {
  <li class="nav-item" style="padding-left: 20px;">
       <a href="/public">  <button class="btn btn-info" type="button" style="background-color: black;" name="">wall</button> </a>
     </li>
+     <li class="nav-item" style="padding-left: 20px;">
+   <a href="/wishlist">  <button class="btn btn-info" type="button" style="background-color: black;" name="wishlist">wishlist
+   </button> </a>
+    </li>
    </ul>
+    <form action="/search" method='get'>
+     <input type="text" placeholder="Search.." name="search">
+     <button type="submit" style="margin-right: 40px; background-color:rgb(0,149,221);"><i class="fa fa-search"></i></button>
+ </form>
   <a href="/logout">
-  <button href="" class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button></a>
+  <button href="/logout" class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button></a>
   </nav>
 
   <div class="container">

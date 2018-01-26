@@ -14,7 +14,7 @@ var findbook = function(str, data,callback){
     });
 };
 var matchword = function(str,data,callback){
-   search(str,data.name,function(chech){
+   search(str,data.name,function(check){
       if(check)
       	return callback(check);
       else{
@@ -23,7 +23,7 @@ var matchword = function(str,data,callback){
       			return callback(check1);
       		else
       		{
-              tagsearch(str,data.tagsearch,callback);
+              tagsearch(str,data.tags,callback);
       		}
       	});
       }
@@ -31,7 +31,7 @@ var matchword = function(str,data,callback){
 };
 var tagsearch = function(str,data,callback){
     var count=0;
-    for(var x =0;x<data.length;i++){
+    for(var x =0;x<data.length;x++){
          search(str,data[x], function(check){
          	if(check)
          		return callback(true);
@@ -239,7 +239,3 @@ var magic = function(str,data,callback){
 module.exports ={
 findbook
 };
-var data =[{name:'pulkit',author:'google',tags:['yoyoyy','hello']}];
-findbook('pul',data,function(function(data){
-  console.log(data);
-});

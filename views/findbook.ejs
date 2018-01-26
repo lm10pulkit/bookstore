@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>BookStore</title>
+    <title>Hello, world!</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
  
  <style type="text/css">
@@ -20,8 +22,8 @@
 
    .customdiv
       {    margin-left: 200px;
-        margin-top: 80px; 
-        height: 430px;
+      
+        height: 380px;
         width: 600px;
         border-radius: 5px;
             background-color: lightgrey;
@@ -48,53 +50,61 @@
   <ul class="navbar-nav mr-auto">
         
       <li class="nav-item">
-     <a href="/addbook"><button class="btn btn-info" type="button" name="logout" style="background-color: black;">add book</button> </a>
+     <a href="/addbook"><button class="btn btn-info" type="button" name="logout" style="background-color: black;"> add book</button> </a>
     </li>
 
     <li class="nav-item" style="padding-left: 20px;">
-      <a href="/mybook">  <button class="btn btn-info" type="button" style="background-color: black;" name="MyBook">MyBook</button> </a>
-    </li>
-
-    <li class="nav-item" style="padding-left: 20px;">
-      <a href="/public">  <button class="btn btn-info" type="button" style="background-color: black;" name="Wall">WALL</button> </a>
+      <a href="/mybook">  <button class="btn btn-info" type="button" style="background-color: black;" name="wall">mybook</button> </a>
     </li>
      
-    <li class="nav-item" style="padding-left: 20px;">
+     <li class="nav-item" style="padding-left: 20px;">
+      <a href="/public">  <button class="btn btn-info" type="button" style="background-color: black;" name="wall">wall</button> </a>
+    </li>
+     <li class="nav-item" style="padding-left: 20px;">
    <a href="/wishlist">  <button class="btn btn-info" type="button" style="background-color: black;" name="wishlist">wishlist
    </button> </a>
     </li>
    </ul>
-    <form action="/search" method='get'>
-     <input type="text" placeholder="Search.." name="search">
-     <button type="submit" style="margin-right: 40px; background-color:rgb(0,149,221);"><i class="fa fa-search"></i></button>
+   <form action="/search" method='get'>
+   <input type="text" placeholder="Search.." name="search">
+   <button type="submit" style="margin-right: 40px; background-color:rgb(0,149,221);"><i class="fa fa-search"></i></button>
  </form>
   <a href="/logout">
-  <button  class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button>
+  <button href="" class="btn btn-info" type="submit" name="logout" style="background-color: black;"> logout</button>
   </a>
 </nav>
-<div class="customdiv">
-  
-  <div style="padding-top: 150px;padding-left: 20px;">
+
+
+
+<%books.forEach(function(item){%>
+<div style="padding-top: 150px; "></div>
+
+
+<div class="customdiv" style="padding-top: 10px;">
+  <a href='/addtowishlist?bookid=<%=item._id%>'><button class="btn btn-info" style="float: right; margin-right: 10px; background-color:green"> addToWishlist</button></a>
+    <a href="/authprof?bookid=<%=item._id%>&userid=<%=item.userid%>" style=" font-size: 20px; color: black; font-weight: bold; padding-left: 40px; ;" >User</a>  
+  <div style="padding-top: 70px;  padding-left: 30px; ">
    <div id="containerIntro">
-<h1>name</h1>
-<p style="font-weight: lighter;"><%=book.name%></p>
+<h1>bookname</h1>
+<p style="font-weight: lighter;"> <%=item.name%></p>
 </div>
 </br>   
  <div id="containerIntro">
-<h1>author</h1>
-<p style="font-weight: lighter;"> <%=book.author%> </p>
+<h1>authorname</h1>
+<p style="font-weight: lighter;"> <%=item.author%> </p>
 </div>
 <div style="padding-top: 5px;"></div>   
 <h4>tags</h4>
 <div style="padding-top: 8px;"></div>
-<%book.tags.forEach(function(tage){%>
-        <a href="">  <button class="btn btn-info" type="button" style="background-color: black;" name="tags"><%=tage%></button> </a>
-<%});%>
-<div style='padding-top: 70px;'></div>
-<a href='/deletebook?bookid=<%=book._id%>'><button class ='btn btn-info' style='float: right; background-color: red;'>delete</button></a>
-<a href='/editbook?bookid=<%=book._id%>'><button class ='btn btn-info' style='float: right; background-color: green;'>edit</button></a>
- </div>
+<%item.tags.forEach(function(item1){%>
+
+<a href=""><button class="btn btn-info" style=""><%=item1%></button> </a>
+<%})%>
+
 </div>
+</div>
+<%})%>
+
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

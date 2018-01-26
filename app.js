@@ -24,6 +24,7 @@ var {findbyusername,
    findwishlist,
    removeitem
  }= require('./db.js');
+var {findbook} = require('./book.js');
 var loggedin = function(req,res,next){
 if(req.user)
   next();
@@ -214,20 +215,31 @@ app.get('/addtowishlist',function(req,res){
     additem(userid.toString(),bookid.toString(),function(err,data){
         console.log(data);
     });
-    res.redirect('/mybook');
+    res.redirect('/wishlist');
 });
 app.get('/wishlist',loggedin,function(req,res){
       findwishlist(req.user._id,function(err,data){
-          res.send(data);
+          res.render('wishlist',{books:data});
       }); 
 });
 app.get('/removeitem',loggedin,function(req,res){
   var userid= req.user._id
   var bookid = req.query.bookid;
   removeitem(userid,bookid,function(err,data){
-    console.log(data);
-    res.send(data);
+            console.log(data);
   });
+  res.redirect('/wishlist');
+});
+app.get('/search',function(req,res){
+  if(req.user){
+    bookpost(req.user._id.toString(),function(data){
+         
+        findbook(req.query.search,data,function(data1){
+                res.render('findbook',{books:data1});
+        });
+  
+    });
+    }
 });
 app.get('/logout',loggedin,function(req,res){
   req.logout();
