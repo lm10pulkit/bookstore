@@ -18,7 +18,11 @@ var {findbyusername,
    mybook,
    deletebook,
    editbook,
-   findbookbyid
+   findbookbyid,
+   additem,
+   createwishlist,
+   findwishlist,
+   removeitem
  }= require('./db.js');
 var loggedin = function(req,res,next){
 if(req.user)
@@ -114,12 +118,17 @@ app.get('/',function(req,res){
        res.render('signup.ejs');
 });
 app.post('/signup',passport.authenticate('local.signup',{failureRedirect:'/'}),function(req,res){
-         res.redirect('/addbook');
+         createwishlist(req.user.id.toString(),function(err,data){
+          
+            console.log(data);
+         });
+         res.redirect('/adddetails');
+  
 });
 app.post('/login',passport.authenticate('local.signin',{failureRedirect:'/'}),function(req,res){
       res.redirect('/addbook');
 });
-app.get('/addbook',function(req,res){
+app.get('/addbook',loggedin,function(req,res){
    res.render('addbook');
 });
 app.post('/addbook',function(req,res){
@@ -132,7 +141,17 @@ app.post('/addbook',function(req,res){
    });
    res.redirect('/addbook');
 });
-
+app.get('/adddetails',loggedin, function(req,res){
+      res.render('adddetails');
+});
+app.post('/adddetails',loggedin,function(req,res){
+    userupdate(req._id,req.body, function(err,data){
+       if(err)
+        throw err;
+      console.log(data);
+      res.redirect('/addbook');
+    });
+});
 app.get('/mybook',loggedin,function(req,res){
   mybook(req.user._id,function(err,data){
        console.log(data);
@@ -174,7 +193,7 @@ app.post('/addtag', loggedin, function(req,res){
     });
 });
 app.get('/public',loggedin,function(req,res){
-    bookpost(function(data){
+    bookpost(req.user._id.toString(),function(data){
         console.log(data);
        res.render('public',{books:data});
     });
@@ -183,16 +202,37 @@ app.get('/authprof',loggedin,function(req,res){
        var bookid = req.query.bookid;
        var userid = req.query.userid;
        console.log(userid);
-       increasepopularity(bookid,function(err,data){
+       increasepopularity(bookid,userid,function(err,data){
         console.log(data);
        });
        res.redirect('/public');
+});
+app.get('/addtowishlist',function(req,res){
+    var bookid= req.query.bookid;
+    var userid= req.user._id;
+    console.log(req.query.bookid);
+    additem(userid.toString(),bookid.toString(),function(err,data){
+        console.log(data);
+    });
+    res.redirect('/mybook');
+});
+app.get('/wishlist',loggedin,function(req,res){
+      findwishlist(req.user._id,function(err,data){
+          res.send(data);
+      }); 
+});
+app.get('/removeitem',loggedin,function(req,res){
+  var userid= req.user._id
+  var bookid = req.query.bookid;
+  removeitem(userid,bookid,function(err,data){
+    console.log(data);
+    res.send(data);
+  });
 });
 app.get('/logout',loggedin,function(req,res){
   req.logout();
   res.redirect('/');
 });
-
 app.listen(8080,function(err){
  if(err)
   console.log(err);

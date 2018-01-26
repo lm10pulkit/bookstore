@@ -5,7 +5,8 @@ var userschema= require('./userschema.js');
 var bookschema = require('./bookschema.js');
 var user= mongoose.model('user',userschema);
 var book= mongoose.model('book',bookschema);
-var wishlist = require('./wishlistschema.js');
+var cartschema =   require('./cart.js');
+var cart = mongoose.model('cart',cartschema);
 var save=function(data,callback){
   var new_user= new user(data);
   new_user.save(callback);
@@ -32,11 +33,16 @@ var bookadd = function(id,data,callback){
 var addtags= function(bookid,tagname,callback){
     book.update({_id:bookid},{$push: {tags: tagname}},callback);
 };
-var increasepopularity= function(bookid,callback){
-     book.update({ _id:bookid},{$inc:{popularity:-1}},callback);
+var increasepopularity= function(bookid,userid,callback){
+    book.findOne({_id:bookid}).then(function(data){
+         if(data.userid.toString()!=userid.toString())
+          book.update({ _id:bookid},{$inc:{popularity:1}},callback);
+         else
+            callback(null,'your data cant be ');
+    });
 };
-var  bookpost= function(callback){
-      book.find().sort({popularity:1}).then(callback);
+var  bookpost= function(userid,callback){
+      book.find({userid:{$not:{$in : [userid]}}}).sort({popularity:-1}).then(callback);
 };
 var mybook = function(id,callback){
   book.find({userid:id},callback);
@@ -50,23 +56,33 @@ book.remove({_id:bookid},callback);
 var findbookbyid = function(bookid,callback){
 book.findOne({_id:bookid},callback);  
 };
-var additem = function(userid,bookid,callback){
 
-     wishlist.find({userid:userid,bookid:bookid},function(err,data){
-        if(data.length>0){
-          console.log('positive still negative');
-          return callback(err,data);
-        }
-        else
-        {
-           wishlist.update({userid:userid},{$push:{bookid:bookid}},callback);
-        }
+var createwishlist = function(userid,callback){
+    var data={userid:userid};
+    var new_cart = new cart(data);
+    new_cart.save().then(function(data){
+      console.log(data);
+    });
+};
+var additem = function(userid,bookid,callback){
+     cart.findOne({userid:userid, bookids: bookid},function(err,data){
+      if(!data){
+        cart.update({userid:userid },{$push: {bookids: bookid.toString()}},callback);
+      }
+      else{
+         callback(err,data);
+      }
      });
 };
-var removeitem= function(userid,bookid,callback){
-     wishlist.update({userid:userid},{$pull :{bookid: bookid}},function(err,data){
-      console.log(data);
-     });
+var findwishlist = function(userid, callback){
+   cart.findOne({userid:userid}).then(function(data){
+      console.log('in the wishlist');
+      console.log(data.bookids);
+      book.find({_id :{ $in : data.bookids}},callback);
+   });
+};
+var  removeitem = function(userid ,bookid, callback){
+    cart.update({userid:userid},{bookids:{$pull : bookid}},callback);
 };
   module.exports={
    findbyusername,
@@ -81,7 +97,9 @@ var removeitem= function(userid,bookid,callback){
   deletebook,
   editbook,
   findbookbyid,
+  createwishlist,
   additem,
+  findwishlist,
   removeitem
 };
 //editbook ('5a62f365dbe55622849bf606',{name:'shvshsc'},function(err,data){
@@ -89,4 +107,15 @@ var removeitem= function(userid,bookid,callback){
 //})
 //removeitem("pulkit","job",function(err,data){
   //  console.log(data);
-//});
+//});ss
+var clear=function(){
+    user.remove().then(function(data){
+     console.log(data);
+    });
+    book.remove().then(function(data){
+      console.log(data);
+    });
+    cart.remove().then(function(data){
+       console.log(data);
+    });
+};

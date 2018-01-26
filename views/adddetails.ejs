@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Welcome</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+    
+    body
+{
+  background-color: rgb(250,250,250);
+  
+
+}
+.customdiv
+{
+  height: 140px;
+  width: 100%;
+   background-color: lightgrey;
+   background-size: cover;
+
+}
+input[type=text]:focus {
+    background-color: lightgrey;
+}
+input[type=password]:focus {
+    background-color: lightgrey;
+}
+h1
+{
+  padding-left: 260px;
+  padding-top: 80px;
+}
+#p1
+{
+  font-size: 50px;
+  font-weight: bold;
+   padding-left: 10px;
+}
+label
+{
+  font-size: 20px;
+}
+
+
+
+  </style>
+ 
+  </head>
+  <body>
+<div class="customdiv" style="">
+	<p style="" id="p1">
+    Welcome to  the bookstore 
+  </p>
+  </div>
+  <div style="padding-top: 40px;" >
+       <div>
+   <h1 > Add Details</h1>
+      </div>
+ <form class="form-horizontal" method='post' action="/adddetails" style="padding-top: 40px; padding-left: 190px; " id="">
+                      <div class="form-group">
+                        <div class="row">
+                        <div class="col-sm-2 ">
+                          <label for="name">Name </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                           <input type="text" name="name"  size="50px;" placeholder="Name" required>
+                           </div>
+                        </div>
+                     </div>
+                     
+                    
+                      
+                       <div class="form-group">
+                      <div class="row">
+                        <div class="col-sm-2">
+                         <label for="No.">  NO. </label>
+                        </div>
+                           <div class="col-sm-5"> 
+                            <input type="text" name="no"  size="50px;" placeholder="phone number" required>
+                            <ul>
+
+                           </div>
+                      </div>
+                      </div>
+                     
+
+                       <div class="form-group"> 
+                        <div class="row" style="padding-top: 20px;">
+                          
+                          <div class="col-sm-2 offset-sm-1">
+                            <button class="btn btn-info" type="submit"> Submit</button>
+                             </div>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div style="float: right; padding-top: 30px;padding-right: 20px;">
+                   <a href='/addbook'> <button type="button" class="btn btn-info" > Skip</button></a>
+                  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

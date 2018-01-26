@@ -69,8 +69,10 @@
 <%books.forEach(function(item){%>
 <div style="padding-top: 150px; "></div>
 
+
 <div class="customdiv" style="padding-top: 10px;">
-	  <a href="/authprof?bookid=<%=item._id%>&userid=<%=item.userid%>" style=" font-size: 20px; color: black; font-weight: bold; padding-left: 40px; ;" > view author profile </a>
+  <a href='/addtowishlist?bookid=<%=item._id%>'><button class="btn btn-info" style="float: right; margin-right: 10px; background-color:green"> addToWishlist</button></a>
+	  <a href="/authprof?bookid=<%=item._id%>&userid=<%=item.userid%>" style=" font-size: 20px; color: black; font-weight: bold; padding-left: 40px; ;" >User</a>  
 	<div style="padding-top: 70px;  padding-left: 30px; ">
    <div id="containerIntro">
 <h1>bookname</h1>
