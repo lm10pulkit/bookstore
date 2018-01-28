@@ -76,14 +76,13 @@ var additem = function(userid,bookid,callback){
 };
 var findwishlist = function(userid, callback){
    cart.findOne({userid:userid}).then(function(data){
-      console.log('in the wishlist');
-      console.log(data.bookids);
       book.find({_id :{ $in : data.bookids}},callback);
    });
 };
 var  removeitem = function(userid ,bookid, callback){
+    userid=userid.toString();
     bookid= bookid.toString();
-     cart.update({userid:userid},{bookids:{$pull : bookid}},callback);
+     cart.update({userid:userid},{$pull :{bookids : bookid}},callback);
 };
   module.exports={
    findbyusername,

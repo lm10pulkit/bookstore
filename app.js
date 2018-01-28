@@ -223,7 +223,7 @@ app.get('/wishlist',loggedin,function(req,res){
       }); 
 });
 app.get('/removeitem',loggedin,function(req,res){
-  var userid= req.user._id
+  var userid= req.user.id;
   var bookid = req.query.bookid;
   removeitem(userid,bookid,function(err,data){
             console.log(data);
